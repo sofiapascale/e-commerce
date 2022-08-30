@@ -1,14 +1,19 @@
-document.addEventListener("DOMContentLoaded", function(){
-    document.getElementById("autos").addEventListener("click", function() {
-        localStorage.setItem("catID", 101);
-        window.location = "products.html"
-    });
-    document.getElementById("juguetes").addEventListener("click", function() {
-        localStorage.setItem("catID", 102);
-        window.location = "products.html"
-    });
-    document.getElementById("muebles").addEventListener("click", function() {
-        localStorage.setItem("catID", 103);
-        window.location = "products.html"
-    });
+const button = document.getElementById("button-iniciar");
+const inputCorreo = document.getElementById("correo")
+
+
+button.addEventListener('click', (event) => {
+  event.preventDefault();
+
+ window.location = "main.html"
 });
+
+button.addEventListener("click", () => {
+
+  if (inputCorreo.value) {
+    localStorage.setItem("usuario", inputCorreo.value);
+  } else {localStorage.removeItem("usuario")};
+   
+  console.log(localStorage.getItem("usuario"))
+})
+
