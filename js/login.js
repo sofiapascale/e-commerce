@@ -3,9 +3,9 @@ const inputCorreo = document.getElementById("correo");
 const inputPassword = document.getElementById("contraseña");
 
 button.addEventListener('click', (event) => {
-  event.preventDefault();
+  // event.preventDefault();
 
- window.location = "main.html"
+ window.location = "index.html"
 });
 
 button.addEventListener("click", () => {
