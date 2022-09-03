@@ -1,49 +1,50 @@
 const button = document.getElementById("button-iniciar");
 const inputCorreo = document.getElementById("correo");
 const inputPassword = document.getElementById("contraseña");
+const form = document.getElementById("form");
+const showError = document.getElementById("warning");
 
-button.addEventListener('click', (event) => {
-  // event.preventDefault();
 
- window.location = "index.html"
-});
+// button.addEventListener('click', (event) => {
+//   // event.preventDefault();
 
-button.addEventListener("click", () => {
+//  window.location = "index.html"
+// });
 
-  if (inputCorreo.value) {
-    localStorage.setItem("usuario", inputCorreo.value);
-  } else {localStorage.removeItem("usuario")};
+// button.addEventListener("click", () => {
+
+//   if (inputCorreo.value) {
+//     localStorage.setItem("usuario", inputCorreo.value);
+//   } else {localStorage.removeItem("usuario")};
    
-  console.log(localStorage.getItem("usuario"))
-})
+//   console.log(localStorage.getItem("usuario"))
+// }) 
 
-function showAlertSuccess() {
-  document.getElementById("alert-success").classList.add("show");
-}
 
-function showAlertError() {
-  document.getElementById("alert-danger").classList.add("show");
-}
-
-button.addEventListener("click", function (){
+form.addEventListener("submit", e =>{
+  e.preventDefault()
 
   const regularPhrase = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
   let comeIn = false
+  let error = ""
 
 
   if(!regularPhrase.test(inputCorreo.value)){
       comeIn = true
+      error += "correo invalido <br>" 
   };
 
-  if(inputPassword.value.length <= 1){
+  if(inputPassword.value.length <= 8){
       comeIn = true
+      error += "contraseña invalida"
   };
+  
+  if (comeIn == true) {
+    showError.innerHTML += error 
+    } else {
+      window.location = "index.html"
+      if (inputCorreo.value) localStorage.setItem("usuario", inputCorreo.value);
+      
+    }
 
-  if(comeIn){
-      showAlertError();
-  } else {
-      showAlertSuccess();
-  }
-
-  console.log(comeIn)
 });
