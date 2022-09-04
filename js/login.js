@@ -29,21 +29,21 @@ form.addEventListener("submit", e =>{
   let error = ""
 
 
-  if(!regularPhrase.test(inputCorreo.value)){
+  if(!regularPhrase.test(inputCorreo.value)){ //condicion correo que al ser verdadera muestra error
       comeIn = true
       error += "correo invalido <br>" 
   };
 
-  if(inputPassword.value.length <= 8){
+  if(inputPassword.value.length <= 8){  //condicion contraseña que al ser verdadera muestra error
       comeIn = true
       error += "contraseña invalida"
   };
   
-  if (comeIn == true) {
+  if (comeIn == true) {    // condicion si comeIn es verdadera entonces agrego mensaje de error, de lo contrario me lleva a la pantalla inicio y se guarda el valor en local storage
     showError.innerHTML += error 
     } else {
       window.location = "index.html"
-      if (inputCorreo.value) localStorage.setItem("usuario", inputCorreo.value);
+      if (inputCorreo.value) localStorage.setItem("usuario", inputCorreo.value); // 1) guardo el valor del input correo en local storage con la key usuario
       
     }
 

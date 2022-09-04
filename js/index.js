@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", function(){
     redirec();
 });
 
-const usuario = document.getElementById("userName");
+const usuario = document.getElementById("userName"); // 2) traigo con DOM el elemento de id userName donde voy a colocar el valor de input correo
 
-usuario.innerHTML = localStorage.getItem("usuario");
+usuario.innerHTML = localStorage.getItem("usuario"); // 3) le agrego el valor de input correo guardado en local storage con key usuario para verlo en pantalla
 
 
 // si no hay usuario no podes ir a la portada

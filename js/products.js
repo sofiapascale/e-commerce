@@ -1,4 +1,4 @@
-const DATA_URL = PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE ;
+const DATA_URL = PRODUCTS_URL + localStorage.getItem("catID") + EXT_TYPE ; //concateno la url de products con los identificadores obtenidos de local storage y la extension .json para que me muestre cualquier producto que seleccione
 
 
 // const DATA_URL = "https://japceibal.github.io/emercado-api/cats_products/101.json"; // url que contiene los datos a mostrar en la pagina
@@ -58,22 +58,22 @@ let currentSortCriteria = undefined;
 let minCount = undefined;
 let maxCount = undefined;
 
-function sortCategories(criteria, array){
+function sortCategories(criteria, array){ //tengo una funcion que me ordena los elementos del array y los agrega a una lista vacia 
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
     {
-        result = array.sort(function(a, b) {
+        result = array.sort(function(a, b) {      //de mayor a menor precio
             if ( a.cost < b.cost ){ return -1; }
             if ( a.cost > b.cost ){ return 1; }
             return 0;
         });
-    }else if (criteria === ORDER_DESC_BY_NAME){
+    }else if (criteria === ORDER_DESC_BY_NAME){    //de menor a mayor precio
         result = array.sort(function(a, b) {
             if ( a.cost > b.cost ){ return -1; }
             if ( a.cost < b.cost ){ return 1; }
             return 0;
         });
-    }else if (criteria === ORDER_BY_PROD_COUNT){
+    }else if (criteria === ORDER_BY_PROD_COUNT){     //mas vendidos a menos vendidos
         result = array.sort(function(a, b) {
             let aCount = parseInt(a.soldCount);
             let bCount = parseInt(b.soldCount);
@@ -87,12 +87,12 @@ function sortCategories(criteria, array){
     return result;
 }
 
-function setCatID(id) {
+function setCatID(id) {     
     localStorage.setItem("catID", id);
     window.location = "products.html"
 }
 
-function showCategoriesList(){
+function showCategoriesList(){   //funcion que muestra la lista de productos en un html usando backticks segun lo que el usuario ingrese en micount y maxcount, y si no ingresa nada se muestran todos los productos. 
 
     let htmlContentToAppend = "";
     for(let i = 0; i < currentCategoriesArray.length; i++){
@@ -123,10 +123,9 @@ function showCategoriesList(){
     }
 }
 
-function sortAndShowCategories(sortCriteria, categoriesArray){
-    currentSortCriteria = sortCriteria;
-
-    if(categoriesArray != undefined){
+function sortAndShowCategories(sortCriteria, categoriesArray){ //funcion que me admite como parametro un orden que el usuario elija en el evento 
+    currentSortCriteria = sortCriteria;                        //y un array y me iguala el array a la funcion sortCategories que me va a ordenar esa lista.
+    if(categoriesArray != undefined){                          //y luego la muestra con showCategoriesList()
         currentCategoriesArray = categoriesArray;
     }
 
@@ -139,7 +138,7 @@ function sortAndShowCategories(sortCriteria, categoriesArray){
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e){
+document.addEventListener("DOMContentLoaded", function(e){      
     getJSONData(DATA_URL).then(function(resultObj){
         if (resultObj.status === "ok"){
             currentCategoriesArray = resultObj.data.products
@@ -148,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 
-    document.getElementById("sortAsc").addEventListener("click", function(){
+    document.getElementById("sortAsc").addEventListener("click", function(){      //le agrego un evento de escucha para cada orden que aplica la funcion sortAndShowCategories
         sortAndShowCategories(ORDER_ASC_BY_NAME);
     });
 
@@ -160,7 +159,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         sortAndShowCategories(ORDER_BY_PROD_COUNT);
     });
 
-    document.getElementById("clearRangeFilter").addEventListener("click", function(){
+    document.getElementById("clearRangeFilter").addEventListener("click", function(){  //click que iguala el valor del input a vacio para el boton limpiar
         document.getElementById("rangeFilterCountMin").value = "";
         document.getElementById("rangeFilterCountMax").value = "";
 
@@ -170,7 +169,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         showCategoriesList();
     });
 
-    document.getElementById("rangeFilterCount").addEventListener("click", function(){
+    document.getElementById("rangeFilterCount").addEventListener("click", function(){   //click que establece una condicion y filtra los productos segun los valores en los inputs
         //Obtengo el mínimo y máximo de los intervalos para filtrar por cantidad
         //de productos por categoría.
         minCount = document.getElementById("rangeFilterCountMin").value;
