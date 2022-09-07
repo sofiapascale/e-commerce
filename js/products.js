@@ -36,17 +36,19 @@ const container_cars = document.getElementById("products-list"); // accedemos me
 // accedemos al entonces de la promesa con otra funcion que nos retorne la promesa response.json()
 // encadenamos otro etonces para la ultima promesa y como promesa recibe lo que retornamos anteriormente
 // nos devuelve solo los products del json
-let variable = fetch(DATA_URL);
-console.log(variable);
 
-variable.then(function(response) {
-return response.json();
-})  
 
-.then(function(json){
-console.log(json);
-showProducts(json.products);
-})
+// let variable = fetch(DATA_URL);
+// console.log(variable);
+
+// variable.then(function(response) {
+// return response.json();
+// })  
+
+// .then(function(json){
+// console.log(json);
+// showProducts(json.products);
+// })
 
 
 
@@ -88,8 +90,8 @@ function sortCategories(criteria, array){ //tengo una funcion que me ordena los 
 }
 
 function setCatID(id) {     
-    localStorage.setItem("catID", id);
-    window.location = "products.html"
+    localStorage.setItem("products_info", id);
+    window.location = "product-info.html"
 }
 
 function showCategoriesList(){   //funcion que muestra la lista de productos en un html usando backticks segun lo que el usuario ingrese en micount y maxcount, y si no ingresa nada se muestran todos los productos. 
