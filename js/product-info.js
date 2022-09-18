@@ -1,5 +1,5 @@
-const DATA_PROD_INFO = PRODUCT_INFO_URL + localStorage.getItem("products_info") + EXT_TYPE;
-const DATA_PROD_COMMENTS = PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("products_info") + EXT_TYPE;
+const DATA_PROD_INFO = PRODUCT_INFO_URL + localStorage.getItem("products_info") + EXT_TYPE;  //2) creo la constante concatenando la url de product info + el id de producto + la extension .json 
+const DATA_PROD_COMMENTS = PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("products_info") + EXT_TYPE; //1*) creo otra constante esta vez para obtener la la url de los comentarios de cada producto
 const CONTAINER_INFO = document.getElementById("container-info");
 const CONTAINER_COMMENTS = document.getElementById("container-comments");
 
@@ -7,7 +7,7 @@ console.log(DATA_PROD_INFO);
 console.log(DATA_PROD_COMMENTS);
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() {  //3) creo la funcion showInfo que agrega los datos del json al contenedor mediante innerHTML usando backticks 
     function showInfo(currentProductInfo) {
         
         CONTAINER_INFO.innerHTML += `
@@ -23,11 +23,22 @@ document.addEventListener("DOMContentLoaded", function() {
         <p>${currentProductInfo.soldCount}</p>
         <p><strong> Imágenes ilustrativas </strong></p>
 
-        <div>
-        <img class="img-fluid" src="${currentProductInfo.images[0]}"></img>
-        <img class="img-fluid" src="${currentProductInfo.images[1]}"></img>
-        <img class="img-fluid" src="${currentProductInfo.images[2]}"></img>
-        <img class="img-fluid" src="${currentProductInfo.images[3]}"></img>
+        <div class="row">
+
+        <div class="col-md-4 p-2">
+        <img class="img-thumbnail" src="${currentProductInfo.images[0]}"></img>
+        </div>
+        
+        <div class="col-md-4 p-2">
+        <img class="img-thumbnail" src="${currentProductInfo.images[1]}"></img>
+        </div>
+        
+        <div class="col-md-4 p-2">
+        <img class="img-thumbnail" src="${currentProductInfo.images[2]}"></img>
+        </div>
+        
+        <div class="col-md-4 p-2">
+        <img class="img-thumbnail" src="${currentProductInfo.images[3]}"></img>
         </div>
         
         </div> <br>
@@ -36,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     }
 
-    function showComments(currentProductComments) {    
+    function showComments(currentProductComments) {    //2*) creo la funcion showComments que admite como parametro una lista de comentarios 
 
         let algo = "";    //creo un variable vacia 
         
@@ -46,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function() {
         <div class="row">
         <div class="list-group-item" ><p><strong>${coment.user}</strong> ${coment.dateTime}</p>`
 
-        for(let i = 0; i < 5; i++){    //inicio un contador que compare i con coment.score y si es menos al coment.score me pinta una estrella 
+        for(let i = 0; i < 5; i++){    //para la parte del rateing que le dio el usuario al producto inicio un contador que compare i con coment.score y si es menor al coment.score me pinta una estrella 
             if (i < coment.score){
                 algo += `<span class="fa fa-star checked"></span>`
             } else {
@@ -61,19 +72,19 @@ document.addEventListener("DOMContentLoaded", function() {
         </div>
         </div>
         `  
-        CONTAINER_COMMENTS.innerHTML = algo; //me agrega todo a la variable y lo imprime en pantalla
+        CONTAINER_COMMENTS.innerHTML = algo; //agrego todo lo que puse dentro de "algo" al contenedor con innerHTML
         }
         
     }
 
-    getJSONData(DATA_PROD_INFO).then(function(resultObj){
+    getJSONData(DATA_PROD_INFO).then(function(resultObj){   // 4) utilizando la funcion getJSONData obtengo los datos del json y los muestro en pantalla con la funcion showInfo creada anteriormente
         if (resultObj.status === "ok"){
             currentProductInfo = resultObj.data
             showInfo(currentProductInfo)
         }
     });
 
-    getJSONData(DATA_PROD_COMMENTS).then(function(resultObj){
+    getJSONData(DATA_PROD_COMMENTS).then(function(resultObj){  // 3*) utilizando la funcion getJSONData obtengo los datos del json y los muestro en pantalla con la funcion showComments creada anteriormente
         if (resultObj.status === "ok"){
             currentProductComments = resultObj.data
             showComments(currentProductComments)
@@ -83,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function() {
     
 })
 
-const stars = document.getElementById("stars");  
+// const stars = document.getElementById("stars");  
 
 // function starRate(score) {  
 //     let div = document.createElement("div");  //creo el div para colocar las 5 estrellas

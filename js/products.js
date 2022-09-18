@@ -89,7 +89,7 @@ function sortCategories(criteria, array){ //tengo una funcion que me ordena los 
     return result;
 }
 
-function setCatID(id) {     
+function setCatID(id) {     // 1) creo la funcion setCatID que va a guardar en local storage el id del producto con la clave products_info y redirige a product-info.html
     localStorage.setItem("products_info", id);
     window.location = "product-info.html"
 }
