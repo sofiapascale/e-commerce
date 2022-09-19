@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {  //3) creo la funcion
     function showInfo(currentProductInfo) {
         
         CONTAINER_INFO.innerHTML += `
-        <div>
+        <div class="m-4">
         <h2>${currentProductInfo.name}</h2> <br>
         <p><strong> Precio </strong></p>
         <p>${currentProductInfo.cost}</p>
