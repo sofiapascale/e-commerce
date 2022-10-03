@@ -2,9 +2,11 @@ const DATA_PROD_INFO = PRODUCT_INFO_URL + localStorage.getItem("products_info") 
 const DATA_PROD_COMMENTS = PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("products_info") + EXT_TYPE; //1*) creo otra constante esta vez para obtener la la url de los comentarios de cada producto
 const CONTAINER_INFO = document.getElementById("container-info");
 const CONTAINER_COMMENTS = document.getElementById("container-comments");
+const CONTAINER_RELATED_PRODUCTS = document.getElementById("relatedProducts");
 
 console.log(DATA_PROD_INFO);
 console.log(DATA_PROD_COMMENTS);
+
 
 
 document.addEventListener("DOMContentLoaded", function() {  //3) creo la funcion showInfo que agrega los datos del json al contenedor mediante innerHTML usando backticks 
@@ -42,6 +44,8 @@ document.addEventListener("DOMContentLoaded", function() {  //3) creo la funcion
         </div>
         
         </div> <br>
+
+        </div>
         `
 
 
@@ -77,10 +81,33 @@ document.addEventListener("DOMContentLoaded", function() {  //3) creo la funcion
         
     }
 
+
+
+    function showRelatedProducts(currentProductInfo) {
+
+        for (let relatedProducts of currentProductInfo.relatedProducts) {
+
+            CONTAINER_RELATED_PRODUCTS.innerHTML += `
+
+            <div onclick="setInfoProd(${relatedProducts.id})" class="card" style="width: 18rem;">
+    <img class="card-img-top" src="${relatedProducts.image}" alt="Card image cap">
+    <div class="card-body">
+    <p class="card-text">${relatedProducts.name}</p>
+    </div>
+    </div>
+        `
+        }
+
+        
+
+    }
+
+
     getJSONData(DATA_PROD_INFO).then(function(resultObj){   // 4) utilizando la funcion getJSONData obtengo los datos del json y los muestro en pantalla con la funcion showInfo creada anteriormente
         if (resultObj.status === "ok"){
             currentProductInfo = resultObj.data
-            showInfo(currentProductInfo)
+            showInfo(currentProductInfo);
+            showRelatedProducts(currentProductInfo);
         }
     });
 
@@ -93,6 +120,11 @@ document.addEventListener("DOMContentLoaded", function() {  //3) creo la funcion
 
     
 })
+
+function setInfoProd(id) {     // 1) creo la funcion setInfoProd que va a guardar en local storage el id del producto con la clave products_info y redirige a product-info.html
+    localStorage.setItem("products_info", id);
+    window.location = "product-info.html"
+}
 
 // const stars = document.getElementById("stars");  
 

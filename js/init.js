@@ -39,3 +39,34 @@ let getJSONData = function(url){
         return result;
     });
 }
+
+document.addEventListener("DOMContentLoaded", function(){
+  
+  menu();
+
+  document.getElementById("cerrar-sesion").addEventListener("click", function() {  //3)
+      window.location = "login.html"
+      localStorage.removeItem("usuario");
+  });
+});
+
+const container_usuario = document.getElementById("userName");
+
+function menu() {   //2)
+  container_usuario.innerHTML += `
+  <div class="dropdown">
+<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+  ${userValue} 
+</button>
+<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+  <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+  <li><a class="dropdown-item" href="cart.html">Carrito</a></li>
+  <li><a id="cerrar-sesion" class="dropdown-item" href="login.html">Cerrar sesión</a></li>
+</ul>
+</div>
+  `
+}
+
+let userValue = localStorage.getItem("usuario") //1)
+
+
