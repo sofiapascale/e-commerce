@@ -36,11 +36,61 @@
     </div>
   </nav>
   <main>
+
     <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
+      <div class="d-flex justify-content-center my-5">
+        <h2>Carrito de compras</h2>
       </div>
+      <div class="m-5">
+        <h3>Articulos a comprar</h3>
+      </div>
+      
+      <div class="row d-flex justify-content-center">
+        <div class="col-2"></div>
+        <div class="col-2"><b><p>Nombre</p></b></div>
+        <div class="col-2"><b><p>Costo</p></b></div>
+        <div class="col-2"><b><p>Cantidad</p></b></div>
+        <div class="col-2"><b><p>Subtotal</p></b></div>
+        <hr style="height:2px; width:90%">
+      </div>
+      
+      <div id="container-cart" class="row d-flex justify-content-center align-items-center">
+        
+      </div>
+      
+
     </div>
+    
+
+    <div id="tipo_envio" class=" mx-4 my-4 pt-4">
+      <h3>Tipo de envio</h3>
+      <input type="radio" id="premium" value="premium">
+      <label for="premium">premium 2 a 5 dias (15%)</label> <br>
+      <input type="radio" id="express" value="express">
+      <label for="express">Express 5 a 8 dias (7%)</label> <br>
+      <input type="radio" id="standard" value="standard">
+      <label for="standard">Standard 12 a 15 dias (5%)</label>
+    </div>
+
+    <div class="mx-4 my-4 pt-4">
+
+      <h3>Dirección de envío</h3>
+
+      <div class="my-3">
+      <p>Calle</p>
+      <input type="text" id="calle">
+      </div>
+      <div class="my-3">
+      <p>Número</p>
+      <input type="text" id="numero">
+      </div>
+      <div>
+        <p>Esquina</p>
+      <input type="text" id="esquina">
+      </div>
+      
+    </div>
+      
   </main>
   <footer class="text-muted">
     <div class="container">
