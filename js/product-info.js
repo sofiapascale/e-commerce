@@ -25,30 +25,31 @@ document.addEventListener("DOMContentLoaded", function() {  //3) creo la funcion
         <p>${currentProductInfo.soldCount}</p>
         <p><strong> Imágenes ilustrativas </strong></p>
 
-        <div class="row">
-
-        <div class="col-md-4 p-2">
-        <img class="img-thumbnail" src="${currentProductInfo.images[0]}"></img>
-        </div>
-        
-        <div class="col-md-4 p-2">
-        <img class="img-thumbnail" src="${currentProductInfo.images[1]}"></img>
-        </div>
-        
-        <div class="col-md-4 p-2">
-        <img class="img-thumbnail" src="${currentProductInfo.images[2]}"></img>
-        </div>
-        
-        <div class="col-md-4 p-2">
-        <img class="img-thumbnail" src="${currentProductInfo.images[3]}"></img>
-        </div>
-        
-        </div> <br>
-
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="${currentProductInfo.images[0]}" class="d-block w-100" alt="lala">
+                </div>
+                <div class="carousel-item">
+                    <img src="${currentProductInfo.images[1]}" class="d-block w-100" alt="lala">
+                </div>
+                <div class="carousel-item">
+                    <img src="${currentProductInfo.images[2]}" class="d-block w-100" alt="lala">
+                </div>
+                 <div class="carousel-item">
+                    <img src="${currentProductInfo.images[3]}" class="d-block w-100" alt="lala">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
         `
-
-
     }
 
     function showComments(currentProductComments) {    //2*) creo la funcion showComments que admite como parametro una lista de comentarios 
@@ -168,3 +169,25 @@ function setInfoProd(id) {     // 1) creo la funcion setInfoProd que va a guarda
 // showInfo(json.product);
 // })
 
+
+// <div class="row">
+
+// <div class="col-md-4 p-2">
+// <img class="img-thumbnail" src="${currentProductInfo.images[0]}"></img>
+// </div>
+
+// <div class="col-md-4 p-2">
+// <img class="img-thumbnail" src="${currentProductInfo.images[1]}"></img>
+// </div>
+
+// <div class="col-md-4 p-2">
+// <img class="img-thumbnail" src="${currentProductInfo.images[2]}"></img>
+// </div>
+
+// <div class="col-md-4 p-2">
+// <img class="img-thumbnail" src="${currentProductInfo.images[3]}"></img>
+// </div>
+
+// </div> <br>
+
+// </div>
