@@ -46,7 +46,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
   document.getElementById("cerrar-sesion").addEventListener("click", function() {  //3)
       window.location = "login.html"
-      localStorage.removeItem("usuario");
+      
   });
 });
 
@@ -56,17 +56,17 @@ function menu() {   //2)
   container_usuario.innerHTML += `
   <div class="dropdown">
 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-  ${userValue} 
+  ${userValue.email} 
 </button>
 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-  <li><a class="dropdown-item" href="my-profile.html">Mi perfil</a></li>
+  <li><a class="dropdown-item" href="my-profile.html" id="my-profile" onclick="pleaseLogIn()" onclick="showEmail()">Mi perfil</a></li>
   <li><a class="dropdown-item" href="cart.html">Carrito</a></li>
   <li><a id="cerrar-sesion" class="dropdown-item" href="login.html">Cerrar sesión</a></li>
 </ul>
 </div>
   `
 }
-
-let userValue = localStorage.getItem("usuario") //1)
-
+let user_id = localStorage.getItem("userid") //3) obtengo el dato guardado en local storage como userid para traer el valor del usuario logueado
+let userValue = JSON.parse(localStorage.getItem(`usuario${user_id}`)) // OBJETO - obtengo el objeto con la info del usuario
+//LO TRAIGO EN INIT PORQUE ESTAN TODAS LAS PAGINAS LINKEADAS A ESTA Y NO TENGO QUE REPETIR CODIGO
 

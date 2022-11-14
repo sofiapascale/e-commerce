@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 function redirec() {
-    if (localStorage.getItem("usuario") == undefined) {
+    if (JSON.parse(localStorage.getItem(`usuario${user_id}`)) == undefined) {
         window.location="login.html";
     }
 };

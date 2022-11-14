@@ -51,10 +51,39 @@
     </div>
   </nav>
   <main>
-    <div class="container">
-      <div class="alert alert-danger text-center" role="alert">
-        <h4 class="alert-heading">Funcionalidad en desarrollo</h4>
-      </div>
+    <div class="my-4 mx-5 px-5">
+      <h4>Perfil</h4>
+      <hr class="my-4">
+      <form action="#" method="get" class="needs-validation" novalidate>
+        <div class="row">
+          <div class="col-sm-6 form-check">
+            <label for="first-name" class="form-label">Primer nombre</label>
+            <input type="text" class="form-control" id="first-name" required>
+          </div>
+          <div class="col-sm-6 form-check">
+            <label for="second-name" class="form-label">Segundo nombre</label>
+            <input type="text" class="form-control" id="second-name">
+          </div>
+          <div class="col-sm-6 form-check">
+            <label for="lastname" class="form-label">Apellido</label>
+            <input type="text" class="form-control" id="lastname" required>
+          </div>
+          <div class="col-sm-6 form-check">
+            <label for="second-lastname" class="form-label">Segundo apellido</label>
+            <input type="text" class="form-control" id="second-lastname">
+          </div>
+          <div class="col-sm-6 form-check">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="text" class="form-control" id="email" required>
+          </div>
+          <div class="col-sm-6 form-check">
+            <label for="contact-number" class="form-label">Telefono de contacto</label>
+            <input type="text" class="form-control" id="contact-number">
+          </div>
+        </div>
+        <hr class="my-5">
+        <button class="btn btn-primary" type="submit">Guardar cambios</button>
+      </form>
     </div>
   </main>
   <footer class="text-muted">
