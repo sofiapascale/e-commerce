@@ -3,6 +3,7 @@ const DATA_PROD_COMMENTS = PRODUCT_INFO_COMMENTS_URL + localStorage.getItem("pro
 const CONTAINER_INFO = document.getElementById("container-info");
 const CONTAINER_COMMENTS = document.getElementById("container-comments");
 const CONTAINER_RELATED_PRODUCTS = document.getElementById("relatedProducts");
+const CONTAINER_IMAGES = document.getElementById("container-images");
 
 console.log(DATA_PROD_INFO);
 console.log(DATA_PROD_COMMENTS);
@@ -23,33 +24,47 @@ document.addEventListener("DOMContentLoaded", function() {  //3) creo la funcion
         <p>${currentProductInfo.category}</p>
         <p><strong> Cantidad de vendidos </strong></p>
         <p>${currentProductInfo.soldCount}</p>
-        <p><strong> Imágenes ilustrativas </strong></p>
+        <p><strong> Imágenes ilustrativas </strong></p> `
+        
+    }
 
-        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="${currentProductInfo.images[0]}" class="d-block w-100" alt="lala">
+    function showImages(currentProductInfo){
+
+        let variable = ""
+
+            variable += `
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">`
+                for(let i = 0; i < currentProductInfo.images.length; i++){
+                    let productImages = currentProductInfo.images[i];
+        
+                    if(productImages == currentProductInfo.images[0]){
+                        variable += `
+                    <div class="carousel-item active" data-bs-interval="10000">
+                        <img src="${productImages}" class="mx-auto d-block w-75 rounded-3" alt="First slide">
+                    </div> `
+                    
+                    } else { 
+                        variable += `
+                        <div class="carousel-item">
+                            <img src="${productImages}" class="mx-auto d-block w-75 rounded-3" alt="Third slide">
+                        </div>`
+                    }
+        
+                }
+                    variable += `    
                 </div>
-                <div class="carousel-item">
-                    <img src="${currentProductInfo.images[1]}" class="d-block w-100" alt="lala">
-                </div>
-                <div class="carousel-item">
-                    <img src="${currentProductInfo.images[2]}" class="d-block w-100" alt="lala">
-                </div>
-                 <div class="carousel-item">
-                    <img src="${currentProductInfo.images[3]}" class="d-block w-100" alt="lala">
-                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
-        </div>
-        `
+            `
+            CONTAINER_IMAGES.innerHTML = variable;
     }
 
     function showComments(currentProductComments) {    //2*) creo la funcion showComments que admite como parametro una lista de comentarios 
@@ -109,6 +124,7 @@ document.addEventListener("DOMContentLoaded", function() {  //3) creo la funcion
             currentProductInfo = resultObj.data
             showInfo(currentProductInfo);
             showRelatedProducts(currentProductInfo);
+            showImages(currentProductInfo);
         }
     });
 
